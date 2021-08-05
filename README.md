@@ -16,4 +16,5 @@ Cadastro de categorias e itens.
 * .env.example deve ser trocado para .env
 * na pastar docs tem as collections para ser importada no postman
 * docker-compose up para rodar o sistema
+* docker exec tracker-app  composer install para instalação do laravel
 * docker exec tracker-app  php artisan migrate --seed para popular as migrations
