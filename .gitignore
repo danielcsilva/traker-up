@@ -3,6 +3,8 @@
 /public/storage
 /storage/*.key
 /vendor
+/postgres
+/redis
 .env
 .env.backup
 .phpunit.result.cache
