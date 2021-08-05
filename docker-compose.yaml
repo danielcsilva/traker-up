@@ -1,6 +1,6 @@
 version: "3.7"
 services:
-  traking-up-app:
+  tracker-up-app:
     build:
       args:
         user: www
@@ -8,19 +8,19 @@ services:
       context: ./
       dockerfile: Dockerfile
     image: laravel-image
-    container_name: traking-up-app
+    container_name: tracker-app
     restart: unless-stopped
     working_dir: /var/www/
     volumes:
       - ./:/var/www
       - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
-      - ./store_traking:/usr/bin/big
+      - ./store_tracker:/usr/bin/big
     networks:
-      - traking-up-network
+      - tracker-up-network
 
   postgres:
     image: postgres:9.5-alpine
-    container_name: postgres-traking
+    container_name: postgresTracker
     volumes:
       - "./postgres/:/var/lib/postgresql/data"
       - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
@@ -32,22 +32,22 @@ services:
     ports:
       - "5435:5432"
     networks:
-       - traking-up-network
+       - tracker-up-network
 
   redis:
     image: redis:alpine
-    container_name: redis-traking-up
+    container_name: redis-tracker-up
     command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
     volumes:
       - ./redis:/data
     ports:
       - "6379:6379"
     networks:
-      - traking-up-network
+      - tracker-up-network
 
   nginx:
     image: nginx:alpine
-    container_name: nginx-traking-up
+    container_name: nginx-tracker-up
     restart: unless-stopped
     ports:
       - 8000:80
@@ -55,8 +55,8 @@ services:
       - ./:/var/www
       - ./nginx/conf.d/:/etc/nginx/conf.d/
     networks:
-      - traking-up-network
+      - tracker-up-network
 
 networks:
-  traking-up-network:
+  tracker-up-network:
     driver: bridge
