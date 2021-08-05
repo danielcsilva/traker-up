@@ -3,6 +3,7 @@
 /public/storage
 /storage/*.key
 /vendor
+/postgres
 .env
 .env.backup
 .phpunit.result.cache
